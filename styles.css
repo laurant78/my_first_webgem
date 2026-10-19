@@ -1,0 +1,499 @@
+:root {
+  --paper: #faf8f5;
+  --paper-dark: #f0eae1;
+  --olive: #5a6345;
+  --olive-dark: #3a412b;
+  --gold: #b59a64;
+  --ink: #38332a;
+  --envelope-green: #6c9371;
+  --envelope-green-dark: #58795c;
+  --envelope-green-light: #7da582;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-snap-type: y proximity;
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  background: var(--paper);
+  font-family: "Montserrat", sans-serif;
+  font-weight: 300;
+}
+
+body.no-scroll {
+  overflow: hidden;
+}
+
+button, input, textarea, select {
+  font: inherit;
+}
+
+/* SECCIONES Y HOJAS */
+.page {
+  min-height: 100svh;
+  padding: 80px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  scroll-snap-align: start;
+}
+
+.page::before {
+  content: "";
+  position: absolute;
+  inset: 20px;
+  border: 1px solid rgba(181, 154, 100, 0.35);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* FONDOS CON IMÁGENES */
+.hero-bg, .celebration-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  z-index: 1;
+}
+
+.hero-bg { 
+  background-image: url('fondo_inicio.jpg'); 
+  opacity: 0.55; 
+}
+
+.celebration-bg { 
+  background-image: url('hospederia.jpg'); 
+  opacity: 0.35; 
+}
+
+.page-content {
+  position: relative;
+  z-index: 4;
+  max-width: 600px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* FOTO CLÁSICA DEL MONASTERIO */
+.section-photo {
+  width: min(75vw, 280px);
+  aspect-ratio: 16 / 10;
+  margin: 15px auto;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.12);
+  border: 1px solid rgba(181, 154, 100, 0.4);
+}
+
+.section-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* TIPOGRAFÍAS Y TEXTOS */
+h1, h2, h3, .names {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 500;
+}
+
+h1.title-welcome {
+  font-size: clamp(2rem, 5.5vw, 3.8rem);
+  line-height: 1.05;
+  margin: 12px 0 20px;
+  color: var(--olive-dark);
+}
+
+h2 {
+  font-size: clamp(2.5rem, 6.5vw, 4.2rem);
+  margin: 10px 0 20px;
+  color: var(--olive-dark);
+}
+
+h3 {
+  font-size: clamp(2rem, 5.5vw, 3rem);
+  line-height: 1.1;
+  margin: 15px 0;
+  color: var(--ink);
+}
+
+p {
+  line-height: 1.7;
+}
+
+.badge-date {
+  font-family: "Montserrat", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  font-size: 0.75rem;
+  color: var(--gold);
+  background: rgba(181, 154, 100, 0.15);
+  padding: 6px 16px;
+  border-radius: 20px;
+}
+
+.section-tag {
+  font-family: "Montserrat", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.65rem;
+  color: var(--olive);
+}
+
+.names {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: clamp(2.8rem, 8vw, 4.5rem);
+  line-height: 0.95;
+  color: var(--olive-dark);
+}
+
+.ampersand {
+  color: var(--gold);
+  font-size: 2rem;
+  margin: 6px 0;
+  font-style: italic;
+}
+
+.date {
+  letter-spacing: 0.15em;
+  font-size: 0.95rem;
+  margin: 20px 0 18px;
+  color: var(--ink);
+}
+
+/* BOTONES */
+.button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 48px;
+  padding: 14px 28px;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.72rem;
+  cursor: pointer;
+  border: 1px solid var(--olive);
+  transition: 0.3s ease;
+  border-radius: 2px;
+}
+
+.button-outline {
+  color: var(--olive-dark);
+  background: rgba(255, 255, 255, 0.85);
+}
+
+.button-outline:hover {
+  color: white;
+  background: var(--olive);
+}
+
+.button-filled {
+  width: 100%;
+  color: white;
+  background: var(--olive);
+  border: 0;
+}
+
+.button-filled:hover {
+  background: var(--olive-dark);
+}
+
+.countdown-wrap {
+  margin-top: 35px;
+}
+
+.countdown {
+  display: flex;
+  justify-content: center;
+  gap: clamp(15px, 4vw, 35px);
+  margin: 15px 0;
+}
+
+.countdown div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 50px;
+}
+
+.countdown strong {
+  font-family: "Cormorant Garamond", serif;
+  color: var(--olive);
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  font-weight: 500;
+}
+
+.countdown span {
+  font-size: 0.55rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.small-note {
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  opacity: 0.8;
+}
+
+.back-top {
+  margin-top: 25px;
+  color: var(--olive);
+  text-decoration: none;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+}
+
+.ceremony { background: #f4efe6; }
+.celebration { background: #ede7dc; }
+.lodging { background: #e5ded2; }
+
+.lodging-intro {
+  font-size: 0.9rem;
+  max-width: 500px;
+  margin-bottom: 15px;
+}
+
+.hotel-list {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0 20px;
+  width: 100%;
+  max-width: 500px;
+  text-align: left;
+  font-size: 0.82rem;
+}
+
+.hotel-list li {
+  background: rgba(255, 255, 255, 0.85);
+  margin-bottom: 8px;
+  padding: 12px 16px;
+  border-left: 3px solid var(--olive);
+  border-radius: 2px;
+}
+
+.hotel-list a {
+  color: var(--olive-dark);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.section-copy {
+  max-width: 480px;
+  font-size: 0.96rem;
+}
+
+.time {
+  margin: 15px 0 25px;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  font-weight: 500;
+}
+
+/* FORMULARIO */
+.rsvp { background: #f0eae1; }
+
+#rsvpForm {
+  width: 100%;
+  max-width: 480px;
+  margin-top: 15px;
+  text-align: left;
+}
+
+#rsvpForm label {
+  display: block;
+  margin: 15px 0 6px;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  font-weight: 500;
+}
+
+#rsvpForm input, #rsvpForm textarea, #rsvpForm select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #d4c5b0;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.85);
+  color: var(--ink);
+  outline-color: var(--olive);
+}
+
+#rsvpForm textarea { resize: vertical; }
+#rsvpForm .button { margin-top: 20px; }
+
+.farewell { background: #e5ded2; }
+.farewell-names { font-size: clamp(2.8rem, 8vw, 4rem); }
+
+/* SOBRE PANTALLA INICIAL */
+.envelope-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  padding: 20px;
+  background: #242424;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+.envelope-screen.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.envelope-container {
+  width: min(80vw, 270px);
+  cursor: pointer;
+  perspective: 1000px;
+}
+
+.envelope {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1.5;
+  background-color: var(--envelope-green);
+  border-radius: 3px;
+  box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+}
+
+.envelope-back {
+  position: absolute;
+  inset: 0;
+  background: var(--envelope-green-dark);
+}
+
+.envelope-flap-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 55%;
+  background: var(--envelope-green);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  transform-origin: top center;
+  transition: transform 0.6s ease, z-index 0.2s ease;
+  z-index: 4;
+}
+
+.envelope-flap-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 55%;
+  background: var(--envelope-green);
+  clip-path: polygon(0 100%, 100% 100%, 50% 0);
+  z-index: 3;
+}
+
+.envelope-flap-left {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 55%;
+  background: var(--envelope-green-dark);
+  clip-path: polygon(0 0, 100% 50%, 0 100%);
+  opacity: 0.4;
+  z-index: 2;
+}
+
+.envelope-flap-right {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 55%;
+  background: var(--envelope-green-light);
+  clip-path: polygon(100% 0, 0 50%, 100% 100%);
+  opacity: 0.4;
+  z-index: 2;
+}
+
+.gold-wax-seal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #ffe89c, #d4af37 40%, #aa8210 70%, #684d00 100%);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  z-index: 5;
+  transition: transform 0.3s ease, opacity 0.4s ease;
+}
+
+.seal-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 235, 170, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.seal-inner span {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #5c4300;
+}
+
+.envelope-hint {
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: #cccccc;
+  margin: 0;
+}
+
+.envelope-screen.opening .envelope-flap-top {
+  transform: rotateX(180deg);
+  z-index: 0;
+}
+
+.envelope-screen.opening .gold-wax-seal {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.5);
+}
+
+.envelope-screen.opening .envelope {
+  transform: scale(0.95);
+  opacity: 0;
+  transition: all 0.6s ease 0.2s;
+}
+
+@media (max-width: 480px) {
+  .page { padding: 65px 20px; }
+  .page::before { inset: 15px; }
+  .countdown { gap: 12px; }
+}
